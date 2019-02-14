@@ -1,4 +1,5 @@
-import socket, struct, time 
+import socket, struct
+from datetime import datetime 
 
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
@@ -10,6 +11,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     with conn:
         print('Connected by', addr)
         while True:
-            time_now = time.time()
-            if time_now:
-                conn.send(struct.pack('f',time_now))
+            timestamp = datetime.now().timestamp() 
+            if timestamp:
+                conn.send(struct.pack('f',timestamp))
