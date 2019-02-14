@@ -10,7 +10,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     conn, addr = s.accept()
     with conn:
         print('Connected by', addr)
-        while True:
-            timestamp = datetime.now().timestamp() 
-            if timestamp:
-                conn.send(struct.pack('f',timestamp))
+        timestamp = datetime.now().timestamp() 
+        if timestamp:
+            conn.send(struct.pack('f',timestamp))
